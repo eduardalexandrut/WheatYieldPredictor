@@ -17,13 +17,43 @@
         }
         path{
             cursor: pointer;
+            z-index: 1;
         }
-        path:hover {
+        path[available="true"]:hover {
             fill: tomato;
         }
+        #tooltip {
+          position: absolute;
+          background-color: #333;
+          color: #fff;
+          padding: 5px;
+          border-radius: 5px;
+          pointer-events: none;
+          width: 100px;
+          height: 100px;
+          z-index: 1000;
+        }
+        label{
+          margin-bottom: 15px;
+        }
+        .modal-footer {
+          justify-content: start !important;
+        }
+        #btn-container {
+          margin-left: auto;
+          width: 30%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+
     </style>
 </head>
 <body>
+
+  <!-- Tooltip element -->
+<div id="tooltip" class="tooltip">cjdkjijfoijfoeiowjeefoiw</div>
     <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -33,11 +63,42 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <label>Rain</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">mm/year</span>
+            <input type="number" id="rain" class="form-control" placeholder="Insert" aria-label="Username" aria-describedby="basic-addon1" min="0" >
+          </div>
+
+          <label>Temperature</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">°C</span>
+            <input type="number" id="temp" class="form-control" placeholder="Insert" aria-label="Username" aria-describedby="basic-addon1" step="0.1">
+          </div>
+
+          <label>Pesticides</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Tonnes</span>
+            <input type="number" id="pest" class="form-control" placeholder="Insert" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1">
+          </div>
+
+          <label>Population</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Thousands</span>
+            <input type="number" id="pop" class="form-control" placeholder="Insert" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1">
+          </div>
         </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <label class="mr-auto" id="yiels">Yield</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Tonnes/ha</span>
+            <input type="number" id="yield" class="form-control" placeholder="Predicted yield..." aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" disabled>
+          </div>
+
+          <div id="btn-container">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Predict</button>
+          </div>
         </div>
       </div>
     </div>
@@ -998,3 +1059,12 @@
 <script src="index.js"></script>
 </body>
 </html>
+<!--
+TODO:
+. Aggiungi pickle
+- Crea funzioni necessarie.
+- Elimina paesi non presenti nel dataset.
+- Aggiungi input fields.
+- Fai chiamata al server.
+- Rendi mappa ridimensionabile.
+-->
