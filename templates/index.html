@@ -34,7 +34,7 @@
           z-index: 1000;
         }
         label{
-          margin-bottom: 15px;
+          margin-bottom: 5px;
         }
         .modal-footer {
           justify-content: start !important;
@@ -63,43 +63,48 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <label>Rain</label>
-          <div class="input-group mb-3">
-            <span class="input-group-text">mm/year</span>
-            <input type="number" id="rain" class="form-control" placeholder="Insert" aria-label="Username" aria-describedby="basic-addon1" min="0" >
+          <form id="predictionForm">
+              <label>Year</label>
+              <div class="input-group mb-3">
+                <input type="number" id="year"class="form-control" placeholder="ex. 2001" min="1900" max="2099" step="1" name="Year"/>
+              </div>
+              
+              <label>Rain</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text">mm/year</span>
+                <input type="number" id="rain" class="form-control" placeholder="ex. 1300" aria-label="Username" aria-describedby="basic-addon1" min="0" name="average_rain_fall_mm_per_year">
+              </div>
+    
+              <label>Temperature</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text">°C</span>
+                <input type="number" id="temp" class="form-control" placeholder="ex. 16" aria-label="Username" aria-describedby="basic-addon1" step="0.1" name="avg_temp">
+              </div>
+    
+              <label>Pesticides</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Tonnes</span>
+                <input type="number" id="pest" class="form-control" placeholder="ex. 200" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="pesticides_tonnes">
+              </div>
+    
+              <label>Population</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Thousands</span>
+                <input type="number" id="pop" class="form-control" placeholder="ex. 700" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="tot_population">
+              </div>
+            </form>
           </div>
-
-          <label>Temperature</label>
-          <div class="input-group mb-3">
-            <span class="input-group-text">°C</span>
-            <input type="number" id="temp" class="form-control" placeholder="Insert" aria-label="Username" aria-describedby="basic-addon1" step="0.1">
+          
+          <div class="modal-footer">
+            <label class="mr-auto">Yield</label>
+            <div class="input-group mb-3">
+              <input type="text" id="yield" class="form-control" placeholder="Predicted yield..." aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" disabled>
+            </div>  
+            <div id="btn-container">
+              <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="predictBtn" class="btn btn-primary">Predict</input>
+            </div>
           </div>
-
-          <label>Pesticides</label>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Tonnes</span>
-            <input type="number" id="pest" class="form-control" placeholder="Insert" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1">
-          </div>
-
-          <label>Population</label>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Thousands</span>
-            <input type="number" id="pop" class="form-control" placeholder="Insert" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1">
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <label class="mr-auto" id="yiels">Yield</label>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Tonnes/ha</span>
-            <input type="number" id="yield" class="form-control" placeholder="Predicted yield..." aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" disabled>
-          </div>
-
-          <div id="btn-container">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Predict</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1061,10 +1066,8 @@
 </html>
 <!--
 TODO:
-. Aggiungi pickle
-- Crea funzioni necessarie.
-- Elimina paesi non presenti nel dataset.
-- Aggiungi input fields.
-- Fai chiamata al server.
+- seleziona paese
+- Fai chiamata asincrona con js
+- miglior modal
 - Rendi mappa ridimensionabile.
 -->

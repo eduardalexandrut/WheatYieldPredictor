@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded',()=> {
     const paths = document.querySelectorAll('path')
     const svg = document.getElementById('svg')
     const tooltip = document.getElementById('tooltip')
+    const predictBtn = document.getElementById('predictBtn')
+    const predictionInput = document.getElementById('yield')
     let selectedCountry = "";
 
     //Make unavailable countries un-selectable.
@@ -35,6 +37,8 @@ document.addEventListener('DOMContentLoaded',()=> {
             }
         }
     )
+    document.querySelector('#close').addEventListener('click', ()=>cleanInput())
+    predictBtn.addEventListener('click', ()=>predict())
 
     function updateSvgDimensions() {
          const viewportWidth = window.innerWidth;
@@ -103,7 +107,54 @@ document.addEventListener('DOMContentLoaded',()=> {
         tooltip.style.top = `${y + 10}px`;
     }
 
+    function predict() {
+        let year = document.querySelector('input[name=Year]').value
+        let average_rain_fall_mm_per_year = document.querySelector('input[name=average_rain_fall_mm_per_year]').value
+        let avg_temp = document.querySelector('input[name=avg_temp]').value
+        let pesticides_tonnes = document.querySelector('input[name=pesticides_tonnes]').value
+        let tot_population = document.querySelector('input[name=tot_population]').value
+
+        let entry = {
+            Year : year,
+            average_rain_fall_mm_per_year:average_rain_fall_mm_per_year,
+            avg_temp:avg_temp,
+            pesticides_tonnes: pesticides_tonnes,
+            Area:selectedCountry,
+            tot_population: tot_population
+
+        }
+        
+        fetch('http://127.0.0.1:5000/predict', {
+            method:'POST',
+            credentials:'include',
+            body:JSON.stringify(entry),
+            headers: new Headers({
+                "content-type":"application/json"
+            })
+        }).then((response) => {
+            if(!response.ok) {
+                console.log(response.status)
+                return
+            }
+            return response.json()
+        }).then((data) => {
+            if(data != null) {
+                const yield = data['prediction']
+                if(!isNaN(yield) && isFinite(yield)) {
+                    predictionInput.value = parseFloat(data['prediction']).toFixed(3) + " tonnes per ha"
+                } else {
+                    predictionInput.value = 'Nan'
+                }
+            }
+        })
+        .catch((error)=>{console.log(error)})
+
+    }
+
+    function cleanInput() {
+        document.querySelectorAll('input').forEach((e)=>e.value = "")
+    }
+
     updateSvgDimensions()
     window.addEventListener('resize',updateSvgDimensions)
-   // document.addEventListener('mousemove', (e)=>positionTooltip(e.clientX, e.clientY))
 }, false)
