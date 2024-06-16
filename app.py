@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
-lrp = pickle.load(open('model.pkl', 'rb'))
+lrp = pickle.load(open('models/modelRidge.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -51,7 +51,7 @@ def predict():
 def prepare_features(Year, Area, avg_temp, average_rain_fall_mm_per_year, pesticides_in_t, tot_population):
     data = {'Year':Year, 'Area':Area, 'avg_temp':avg_temp,
          'average_rain_fall_mm_per_year':average_rain_fall_mm_per_year, 'pesticides_in_t':pesticides_in_t,
-         'Total population':tot_population}
+         'Total population (k)':tot_population}
     y = pd.DataFrame(data = data, index = [0])
     preprocessor = lrp.best_estimator_.named_steps['preprocessor']
     model = lrp.best_estimator_.named_steps['model']
