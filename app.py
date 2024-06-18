@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
-lrp = pickle.load(open('models/modelRidge.pkl', 'rb'))
+lrp = pickle.load(open('models/modelCatboost.pkl', 'rb'))
 
 @app.route('/')
 def home():
