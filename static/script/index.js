@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded',()=> {
     const svg = document.getElementById('svg')
     const tooltip = document.getElementById('tooltip')
     const predictBtn = document.getElementById('predictBtn')
-    const predictionInput = document.getElementById('yield')
+    /*const predictionInput = document.getElementById('yield')
+    const selectModel = document.querySelector('select[name="model"]')*/
     let selectedCountry = "";
 
     //Make unavailable countries un-selectable.
@@ -38,7 +39,8 @@ document.addEventListener('DOMContentLoaded',()=> {
         }
     )
     document.querySelector('#close').addEventListener('click', ()=>cleanInput())
-    predictBtn.addEventListener('click', ()=>predict())
+   /* predictBtn.addEventListener('click', ()=>predict())
+    selectModel.addEventListener('change',(e)=>setPerformanceInfo(e.target.value))*/
 
     function updateSvgDimensions() {
          const viewportWidth = window.innerWidth;
@@ -153,6 +155,20 @@ document.addEventListener('DOMContentLoaded',()=> {
 
     function cleanInput() {
         document.querySelectorAll('input').forEach((e)=>e.value = "")
+    }
+
+    function setPerformanceInfo(model) {
+        fetch('http://127.0.0.1:5000/performance')
+        .then(response => response.json)
+        .then(data=> {
+            const modelTraining = data[model].training_data
+            const modelTest = data[model].test_data
+
+            const traingList = document.querySelector('ul#training-list')
+            const testList = document.querySelector("ul#tes-list")
+            traingList.childNodes[0].textContent += modelTraining['mean_square_error']
+        })
+        .catch((error) => console.error(error))
     }
 
     updateSvgDimensions()

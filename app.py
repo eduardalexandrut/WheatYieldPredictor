@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
-lrp = pickle.load(open('models/modelCatboost.pkl', 'rb'))
+cbr= pickle.load(open('models/modelCatboost.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -48,6 +48,10 @@ def predict():
         print(prediction[0][0])
         return jsonify({'prediction': prediction[0][0]})
         
+@app.route('/performance')
+def get_performance_json():
+    return send_from_directory('models', 'performance.json')
+
 def prepare_features(Year, Area, avg_temp, average_rain_fall_mm_per_year, pesticides_in_t, tot_population):
     data = {'Year':Year, 'Area':Area, 'avg_temp':avg_temp,
          'average_rain_fall_mm_per_year':average_rain_fall_mm_per_year, 'pesticides_in_t':pesticides_in_t,

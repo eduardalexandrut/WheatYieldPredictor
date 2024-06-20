@@ -10,10 +10,18 @@
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
  
-    <title>Document</title>
+    <title>Wheat Yield Predictor</title>
     <style>
         body{
             background-color: rgba(50,50,68);
+        }
+        ul{
+          list-style: none;
+          padding-left: 10px !important;
+        }
+        
+        li{
+          text-align: left !important;
         }
         path{
             cursor: pointer;
@@ -36,9 +44,14 @@
         label{
           margin-bottom: 5px;
         }
+        select{
+          margin-bottom: 15px;
+        }
         .modal-footer {
           justify-content: start !important;
         }
+        
+       
         #btn-container {
           margin-left: auto;
           width: 30%;
@@ -53,7 +66,7 @@
 <body>
 
   <!-- Tooltip element -->
-<div id="tooltip" class="tooltip">cjdkjijfoijfoeiowjeefoiw</div>
+<div id="tooltip" class="tooltip"></div>
     <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -63,43 +76,78 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="predictionForm">
-              <label>Year</label>
-              <div class="input-group mb-3">
-                <input type="number" id="year"class="form-control" placeholder="ex. 2001" min="1900" max="2099" step="1" name="Year"/>
-              </div>
-              
-              <label>Rain</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text">mm/year</span>
-                <input type="number" id="rain" class="form-control" placeholder="ex. 1300" aria-label="Username" aria-describedby="basic-addon1" min="0" name="average_rain_fall_mm_per_year">
-              </div>
-    
-              <label>Temperature</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text">°C</span>
-                <input type="number" id="temp" class="form-control" placeholder="ex. 16" aria-label="Username" aria-describedby="basic-addon1" step="0.1" name="avg_temp">
-              </div>
-    
-              <label>Pesticides</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text">Tonnes</span>
-                <input type="number" id="pest" class="form-control" placeholder="ex. 200" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="pesticides_tonnes">
-              </div>
-    
-              <label>Population</label>
-              <div class="input-group mb-3">
-                <span class="input-group-text">Thousands</span>
-                <input type="number" id="pop" class="form-control" placeholder="ex. 700" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="tot_population">
-              </div>
-            </form>
-          </div>
-          
-          <div class="modal-footer">
+          <!--<div class="col-5" id="left">-->
+            <form id="predictionForm">
+                <label>Year</label>
+                <div class="input-group mb-3">
+                  <input type="number" id="year"class="form-control" placeholder="ex. 2001" min="1900" max="2099" step="1" name="Year"/>
+                </div>
+                
+                <label>Rain</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">mm/year</span>
+                  <input type="number" id="rain" class="form-control" placeholder="ex. 1300" aria-label="Username" aria-describedby="basic-addon1" min="0" name="average_rain_fall_mm_per_year">
+                </div>
+      
+                <label>Temperature</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">°C</span>
+                  <input type="number" id="temp" class="form-control" placeholder="ex. 16" aria-label="Username" aria-describedby="basic-addon1" step="0.1" name="avg_temp">
+                </div>
+
+                <label>Pesticides</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Tonnes</span>
+                  <input type="number" id="pest" class="form-control" placeholder="ex. 200" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="pesticides_tonnes">
+                </div>
+                
+                <label>Population</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Thousands</span>
+                  <input type="number" id="pop" class="form-control" placeholder="ex. 700" aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" name="tot_population">
+                </div>
+              </form>
+           <!--</div>---> 
+           <!--
+            <div class="col-1"></div>
+            <div class="col-5" id="right">
+
+            <label>Model</label>
+            <select class="form-select" name="model">
+              <option value="Linear Regression">Linear Regression</option>
+              <option value="Ridge Regression">Ridge Regression</option>
+              <option value="Lasso">Lasso</option>
+              <option value="ElasticNet">ElasticNet</option>
+              <option value="Catboost" selected>Catboost</option>
+              <option value="Decision Tree"> Decision Tree</option>
+              <option value="Gradient Boosting Regression">Gradient Boosting Regression</option>
+              <option value="Random Forest">Random Forest</option>
+              <option value="K-Nearest Neighbours">K-Nearest Neighbours</option>
+              <option value="Extreme Gradient Boosting">Extreme Gradient Boosting</option>
+            </select>
+            <label>Training Performance Info:</label>
+            <ul id="training-list">
+              <li>MSE: </li>
+              <li>MAE: </li>
+              <li>Relative error:</li>
+              <li>R2: </li>
+            </ul>
+
+            <label>Test Performance Info:</label>
+            <ul id="test-list">
+              <li>MSE: </li>
+              <li>MAE: </li>
+              <li>Relative error:</li>
+              <li>R2: </li>
+            </ul>
+          </div>-->
+
+        </div>
+        <div class="modal-footer">
             <label class="mr-auto">Yield</label>
             <div class="input-group mb-3">
               <input type="text" id="yield" class="form-control" placeholder="Predicted yield..." aria-label="Insert" aria-describedby="basic-addon1" min="0" step="0.1" disabled>
-            </div>  
+            </div> 
             <div id="btn-container">
               <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button id="predictBtn" class="btn btn-primary">Predict</input>
@@ -1064,10 +1112,3 @@
 <script type="text/javascript" src="{{ url_for('static', filename='script/index.js') }}"></script>
 </body>
 </html>
-<!--
-TODO:
-- seleziona paese
-- Fai chiamata asincrona con js
-- miglior modal
-- Rendi mappa ridimensionabile.
--->

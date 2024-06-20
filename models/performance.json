@@ -1,0 +1,123 @@
+{
+    "Linear Regression": {
+      "training_data": {
+        "mean_squared_error": 0.23221,
+        "relative_error": 16.70460,
+        "r_squared_coefficient": 0.94687
+      },
+      "test_data": {
+        "mean_squared_error": 0.22484,
+        "relative_error": 16.13981,
+        "r_squared_coefficient": 0.94639
+      }
+    },
+    "Ridge Regression": {
+      "training_data": {
+        "mean_squared_error": 0.23387,
+        "relative_error": 16.91421,
+        "r_squared_coefficient": 0.94649
+      },
+      "test_data": {
+        "mean_squared_error": 0.2265,
+        "relative_error": 16.36011,
+        "r_squared_coefficient": 0.94599
+      }
+    },
+    "Lasso": {
+      "training_data": {
+        "mean_squared_error": 0.24112,
+        "relative_error": 17.78612,
+        "r_squared_coefficient": 0.94483
+      },
+      "test_data": {
+        "mean_squared_error": 0.229,
+        "relative_error": 17.18194,
+        "r_squared_coefficient": 0.94539
+      }
+    },
+    "ElasticNet": {
+      "training_data": {
+        "mean_squared_error": 0.24634,
+        "relative_error": 18.15650,
+        "r_squared_coefficient": 0.94363
+      },
+      "test_data": {
+        "mean_squared_error": 0.23808,
+        "relative_error": 17.60077,
+        "r_squared_coefficient": 0.94323
+      }
+    },
+    "Decision Tree": {
+      "training_data": {
+        "mean_squared_error": 0.0,
+        "relative_error": 0.0,
+        "r_squared_coefficient": 1.0
+      },
+      "test_data": {
+        "mean_squared_error": 0.32017,
+        "relative_error": 16.94594,
+        "r_squared_coefficient": 0.92365
+      }
+    },
+    "Random Forest": {
+      "training_data": {
+        "mean_squared_error": 0.046859,
+        "relative_error": 6.96057,
+        "r_squared_coefficient": 0.98928
+      },
+      "test_data": {
+        "mean_squared_error": 0.19022,
+        "relative_error": 13.21069,
+        "r_squared_coefficient": 0.95464
+      }
+    },
+    "Gradient Boosting Regression": {
+      "training_data": {
+        "mean_squared_error": 0.051335,
+        "relative_error": 8.24856,
+        "r_squared_coefficient": 0.98825
+      },
+      "test_data": {
+        "mean_squared_error": 0.20569,
+        "relative_error": 14.32581,
+        "r_squared_coefficient": 0.95095
+      }
+    },
+    "Extreme Gradient Boosting": {
+      "training_data": {
+        "mean_squared_error": 0.045801,
+        "relative_error": 7.75247,
+        "r_squared_coefficient": 0.98952
+      },
+      "test_data": {
+        "mean_squared_error": 0.20324,
+        "relative_error": 13.89255,
+        "r_squared_coefficient": 0.95154
+      }
+    },
+    "Catboost": {
+      "training_data": {
+        "mean_squared_error": 0.05188,
+        "relative_error": 8.72068,
+        "r_squared_coefficient": 0.98813
+      },
+      "test_data": {
+        "mean_squared_error": 0.17523,
+        "relative_error": 13.37791,
+        "r_squared_coefficient": 0.95822
+      }
+    },
+    "K-Nearest Neighbors": {
+      "training_data": {
+        "mean_squared_error": 0.0,
+        "relative_error": 0.0,
+        "r_squared_coefficient": 1.0
+      },
+      "test_data": {
+        "mean_squared_error": 0.4136,
+        "relative_error": 18.76202,
+        "r_squared_coefficient": 0.90138
+      }
+    }
+  }
+  
