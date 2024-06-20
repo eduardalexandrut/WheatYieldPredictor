@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded',()=> {
         }
     )
     document.querySelector('#close').addEventListener('click', ()=>cleanInput())
-   /* predictBtn.addEventListener('click', ()=>predict())
-    selectModel.addEventListener('change',(e)=>setPerformanceInfo(e.target.value))*/
+    predictBtn.addEventListener('click', ()=>predict())
+   /* selectModel.addEventListener('change',(e)=>setPerformanceInfo(e.target.value))*/
 
     function updateSvgDimensions() {
          const viewportWidth = window.innerWidth;
