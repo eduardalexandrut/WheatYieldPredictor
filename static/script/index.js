@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded',()=> {
     const svg = document.getElementById('svg')
     const tooltip = document.getElementById('tooltip')
     const predictBtn = document.getElementById('predictBtn')
-    /*const predictionInput = document.getElementById('yield')
-    const selectModel = document.querySelector('select[name="model"]')*/
+    const predictionInput = document.getElementById('yield')
+    /*const selectModel = document.querySelector('select[name="model"]')*/
     let selectedCountry = "";
 
     //Make unavailable countries un-selectable.
