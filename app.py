@@ -44,7 +44,7 @@ def predict():
         features = prepare_features(Year, Area, avg_temp, average_rain_fall_mm_per_year, pesticides_in_t, tot_population)
         
         # Predict
-        prediction = lrp.best_estimator_.named_steps['model'].predict(features).reshape(1, -1)
+        prediction = cbr.best_estimator_.named_steps['model'].predict(features).reshape(1, -1)
         print(prediction[0][0])
         return jsonify({'prediction': prediction[0][0]})
         
@@ -57,8 +57,8 @@ def prepare_features(Year, Area, avg_temp, average_rain_fall_mm_per_year, pestic
          'average_rain_fall_mm_per_year':average_rain_fall_mm_per_year, 'pesticides_in_t':pesticides_in_t,
          'Total population (k)':tot_population}
     y = pd.DataFrame(data = data, index = [0])
-    preprocessor = lrp.best_estimator_.named_steps['preprocessor']
-    model = lrp.best_estimator_.named_steps['model']
+    preprocessor = cbr.best_estimator_.named_steps['preprocessor']
+    model = cbr.best_estimator_.named_steps['model']
 
     # Transforma l'input
     transformed_y = preprocessor.transform(y)
